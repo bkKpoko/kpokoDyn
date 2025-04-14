@@ -20,6 +20,7 @@ public:
   void draw();
   void setPos(glm::vec3 pos);
   void setRot(glm::quat rot);
+  void setTransform(glm::vec3 pos, glm::quat rot);
   void printTransform();
 
 private:

@@ -72,20 +72,19 @@ void display() {
 void update(int value) {
   consumer.update();
   for (size_t i = 0; i < consumer.sbuf->data_size; i = i + 7) {
-    glm::vec3 pos = {
+    glm::vec3 pos(
       (float)consumer.data[i + 0], 
       (float)consumer.data[i + 1], 
       (float)consumer.data[i + 2]
-    };
-    glm::quat rot = glm::normalize(glm::quat{
+    );
+    glm::quat rot = glm::normalize(glm::quat(
       (float)consumer.data[i + 3], 
       (float)consumer.data[i + 4], 
       (float)consumer.data[i + 5], 
       (float)consumer.data[i + 6]
-    });
+    ));
       
-    nodes[i / 7].setPos(pos);
-    nodes[i / 7].setRot(rot);
+    nodes[i / 7].setTransform(pos, rot);
 
     nodes[i].printTransform();
   }

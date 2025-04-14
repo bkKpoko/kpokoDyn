@@ -17,6 +17,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include <ostream>
 #include <string>
 
 
@@ -77,7 +78,13 @@ void Node::setPos(glm::vec3 pos){
 }
 
 void Node::setRot(glm::quat rot){
-  transform *= glm::mat4_cast(rot);
+  transform = transform * glm::mat4_cast(rot);
+}
+
+
+void Node::setTransform(glm::vec3 pos, glm::quat rot){
+  transform = glm::mat4_cast(rot);
+  transform[3] = glm::vec4(pos, 1.0f);
 }
 
 void Node::printTransform(){
@@ -87,4 +94,5 @@ void Node::printTransform(){
     }
     std::cout << std::endl;
   }
+  std::cout << std::endl;
 }
